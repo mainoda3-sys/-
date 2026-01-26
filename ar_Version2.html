@@ -1,0 +1,43 @@
+<!doctype html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>AR Navigation</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- A-Frame + AR.js -->
+  <script src="https://aframe.io/releases/1.2.0/aframe.min.js"></script>
+  <script src="https://raw.githack.com/AR-js-org/AR.js/master/aframe/build/aframe-ar.js"></script>
+  <style>
+    body{margin:0;overflow:hidden}
+    #hint{position:fixed;left:10px;top:10px;background:rgba(0,0,0,0.6);color:#fff;padding:8px;border-radius:6px;z-index:10;font-size:14px}
+    #controls{position:fixed;left:10px;bottom:10px;z-index:10}
+    .btn{background:#1f8efa;color:#fff;padding:8px 12px;border-radius:6px;text-decoration:none}
+  </style>
+</head>
+<body>
+  <div id="hint">Point your camera at the marker (hiro or kanji). Tap screen to interact.</div>
+  <div id="controls">
+    <a id="closeBtn" class="btn" href="index.html">Close</a>
+  </div>
+
+  <a-scene embedded arjs='sourceType:camera; debugUIEnabled: false;'>
+    <!-- HIRO marker (preset) -->
+    <a-marker preset="hiro">
+      <a-entity id="overlay1" position="0 0 0">
+        <a-box position="0 0.25 0" depth="0.5" height="0.1" width="1" color="#1abc9c" animation="property: position; to: 0 0.35 0; dir: alternate; dur: 800; loop: true"></a-box>
+        <a-text value="Slot A1" align="center" color="#fff" position="0 0.65 0" side="double"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <!-- KANJI marker (preset) -->
+    <a-marker preset="kanji">
+      <a-entity id="overlay2" position="0 0 0">
+        <a-cone position="0 0.25 0" height="0.6" radius-bottom="0.25" color="#e74c3c" animation="property: rotation; to: 0 360 0; dur: 3000; loop: true"></a-cone>
+        <a-text value="Slot B2" align="center" color="#fff" position="0 0.9 0" side="double"></a-text>
+      </a-entity>
+    </a-marker>
+
+    <a-entity camera></a-entity>
+  </a-scene>
+</body>
+</html>
